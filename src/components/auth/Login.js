@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { handleUserLogin } from '../firebase/firebase';
+import { handleUserLogin } from '../../firebase/firebase';
 
 const Login = () => {
     const [inputData, setInputData] = useState({email: '', password: '' });
