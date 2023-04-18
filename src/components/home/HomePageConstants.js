@@ -1,0 +1,1 @@
+export const carouselImagesPath = ['../../assets/images/maxresdefault.jpg', '../../assets/images/maxresdefault.jpg', '../../assets/images/maxresdefault.jpg']
