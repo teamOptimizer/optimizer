@@ -1,6 +1,45 @@
+:root {
+    --maxWidthForBodyContainer : 1350px;
+}
 .opt-header-container {
+    background-color: white;
+    margin-bottom: 1rem;
+}
+
+.opt-header-inner-container {
+    max-width: var(--maxWidthForBodyContainer);
+    margin: auto;
     display: flex;
     flex: 1;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.opt-body-container {
+    max-width: var(--maxWidthForBodyContainer);
+    margin: auto;
+}
+
+.ui.text.opt-main-header.menu .item {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 1rem;
+    color: #ffa96a;
+    cursor: pointer;
+}
+
+.ui.text.opt-main-header.menu .item:hover {
+    font-weight: 700;
+    transition:all 0.5s;
+}
+
+.opt-footer-container {
+    background-color: white;   
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #efefef;
 }

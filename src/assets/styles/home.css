@@ -2,3 +2,20 @@
     max-width: 200px;
     height: auto;
 }
+
+.home-carousel-image {
+    border-radius: 10px;
+}
+
+.opt-carousel-container .slick-next{
+    right: 25px;
+}
+
+.opt-carousel-container .slick-prev {
+    left: 25px;
+    z-index: 11;
+}
+
+.opt-carousel-container .slick-dots {
+    bottom: 25px;
+}

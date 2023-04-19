@@ -2,8 +2,10 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div>
-            Footer
+        <div className='opt-footer-container'>
+            <div className='opt-body-container'>
+                Footer
+            </div>
         </div>
     )
 }
