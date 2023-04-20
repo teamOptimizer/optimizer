@@ -5,7 +5,7 @@ import { Grid, Menu } from 'semantic-ui-react';
 import '../../assets/styles/home.css';
 import MobileHeader from './MobileHeader';
 
-function Header({ setIsSidebarVisible }) {
+function Header({ toggleSidebar }) {
   const navigate = useNavigate();
   return (
     <div className="opt-header-container">
@@ -43,7 +43,7 @@ function Header({ setIsSidebarVisible }) {
         </Grid.Row>
 		<Grid.Row only='mobile tablet'>
 			<Grid.Column>
-				<MobileHeader setIsSidebarVisible={setIsSidebarVisible} />
+				<MobileHeader toggleSidebar={toggleSidebar} />
 			</Grid.Column>
 		</Grid.Row>
       </Grid>

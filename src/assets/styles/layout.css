@@ -1,6 +1,7 @@
 :root {
     --maxWidthForBodyContainer : 1350px;
 }
+
 .opt-header-container {
     background-color: white;
     margin-bottom: 1rem;
@@ -52,6 +53,7 @@
 
 .opt-layout-container .ui.segment{
     background-color: inherit;
+    height: 100vh;
 }
 
 body {
