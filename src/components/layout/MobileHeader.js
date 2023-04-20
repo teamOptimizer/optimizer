@@ -2,7 +2,6 @@ import React from 'react';
 import { Image, Icon } from 'semantic-ui-react';
 
 const MobileHeader = ({ toggleSidebar }) => {
-    console.log(toggleSidebar, 'hello data')
     return (
         <div className="opt-mobile-header-row">
             <Icon name="sidebar" size="large" link onClick={() => toggleSidebar(true)} className='opt-menu-bar-icon' />

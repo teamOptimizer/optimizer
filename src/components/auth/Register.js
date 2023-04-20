@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Divider, Input, Label } from 'semantic-ui-react'
+import { Button, Divider, Input, Dimmer, Loader } from 'semantic-ui-react'
 import { createUser } from '../../firebase/firebase';
 import Layout from '../layout/Layout';
 import AuthTheme from './AuthTheme';
@@ -8,16 +8,19 @@ import { Header } from 'semantic-ui-react';
 
 const Login = () => {
     const [inputData, setInputData] = useState({email: '', password: '' });
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e?.preventDefault();
+        setIsLoading(true);
         createUser(inputData).then((data) => {
             // get user details 
-        })
+        }).finally(() => setIsLoading(false));
     }
     return (
         <Layout>
         <AuthTheme imageUrl={'../../assets/images/login.jpg'}>
+            {isLoading ?       <Dimmer active inverted> <Loader size='big' /> </Dimmer> : (
             <div className='opt-signup-inner-container'>
                 <Header>Sign up</Header>
                 <div className='opt-auth-input-container'>
@@ -32,6 +35,7 @@ const Login = () => {
                 <Divider horizontal>OR</Divider>
                     <span>Already had a account? <a href='/login'>Login.</a></span>
             </div>
+            )}
         </AuthTheme>
         </Layout>
     )

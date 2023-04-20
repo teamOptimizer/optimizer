@@ -3,13 +3,15 @@ import { handleUserLogin } from '../../firebase/firebase';
 
 const Login = () => {
     const [inputData, setInputData] = useState({email: '', password: '' });
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleLogin = (e) => {
         e.preventDefault();
+        setIsLoading(true)
         handleUserLogin(inputData).then((data) => {
             // get user details 
             console.log(data, 'hello login ')
-        })
+        }).finally(() => setIsLoading(false));
     }
     return (
         <div>
