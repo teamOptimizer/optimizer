@@ -3,14 +3,15 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Grid, Menu } from 'semantic-ui-react';
 import '../../assets/styles/home.css';
+import MobileHeader from './MobileHeader';
 
-function Header() {
+function Header({ setIsSidebarVisible }) {
   const navigate = useNavigate();
   return (
     <div className="opt-header-container">
       <Grid>
-        <Grid.Row>
-          <Grid.Column only="computer">
+        <Grid.Row only="computer">
+          <Grid.Column>
             <div className="opt-header-inner-container">
               <img
                 src={require('../../assets/images/logo.png')}
@@ -21,25 +22,30 @@ function Header() {
                 <Menu text className="opt-main-header">
                   <Menu.Item
                     name="Home" // active={activeItem === 'closest'}
-                    onClick={navigate('/')}
+                    onClick={() => navigate('/')}
                   />
                   <Menu.Item
                     name="Happy Stories"// active={activeItem === 'mostComments'}
-                    onClick={navigate('/')}
+                    onClick={() => navigate('/')}
                   />
                   <Menu.Item
                     name="Login"// active={activeItem === 'mostPopular'}
-                    onClick={navigate('/login')}
+                    onClick={() => navigate('/login')}
                   />
                   <Menu.Item
                     name="Register" // active={activeItem === 'mostPopular'}
-                    onClick={navigate('/register')}
+                    onClick={() => navigate('/register')}
                   />
                 </Menu>
               </div>
             </div>
           </Grid.Column>
         </Grid.Row>
+		<Grid.Row only='mobile tablet'>
+			<Grid.Column>
+				<MobileHeader setIsSidebarVisible={setIsSidebarVisible} />
+			</Grid.Column>
+		</Grid.Row>
       </Grid>
     </div>
   );

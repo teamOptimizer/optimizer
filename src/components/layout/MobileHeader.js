@@ -1,10 +1,12 @@
 import React from 'react';
-import { AiOutlineMenu } from 'react-icons/ai';
+import { Image, Icon } from 'semantic-ui-react';
 
-const MobileHeader = () => {
+const MobileHeader = ({ setIsSidebarVisible }) => {
     return (
         <div className="opt-mobile-header-row">
-            <AiOutlineMenu />
+            <Icon name="sidebar" size={23} className='opt-menu-bar-icon' />
+            <Image size="small" src={require('../../assets/images/logo.png')} />
+            <Icon name="bell" />
         </div>
     )
 }

@@ -6,6 +6,10 @@
     margin-bottom: 1rem;
 }
 
+.opt-header-container .ui.grid {
+    margin: 0px!important;
+}
+
 .opt-header-inner-container {
     max-width: var(--maxWidthForBodyContainer);
     margin: auto;
@@ -44,6 +48,10 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.opt-layout-container .ui.segment{
+    background-color: inherit;
 }
 
 body {
