@@ -8,8 +8,8 @@ import '../../assets/styles/layout.css';
 function Layout({ children }) {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   return (
-    <div className="opt-layout-container">
-    <Sidebar.Pushable as={Segment}>
+    <div>
+    <Sidebar.Pushable as={Segment} className="opt-layout-container">
       <Sidebar
         as={Menu}
         animation="overlay"
@@ -23,7 +23,7 @@ function Layout({ children }) {
       <Sidebar.Pusher>
         <>
           <Header toggleSidebar={setIsSidebarVisible} />
-          <div className="opt-body-container">{children}</div>
+            <div className="opt-body-container">{children}</div>
           <Footer />
         </>
       </Sidebar.Pusher>

@@ -34,7 +34,7 @@ function Header({ toggleSidebar }) {
                   />
                   <Menu.Item
                     name="Register" // active={activeItem === 'mostPopular'}
-                    onClick={() => navigate('/register')}
+                    onClick={() => navigate('/signup')}
                   />
                 </Menu>
               </div>

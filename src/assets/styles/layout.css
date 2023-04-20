@@ -51,7 +51,7 @@
     align-items: center;
 }
 
-.opt-layout-container .ui.segment{
+.opt-layout-container.ui.segment{
     background-color: inherit;
     height: 100vh;
 }

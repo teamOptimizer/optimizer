@@ -9,6 +9,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'semantic-ui-css/semantic.min.css';
 import Home from './components/home/Home';
 import Login from './components/auth/Login';
+import Register from './components/auth/Register';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path='/signup' element={<Register />} />
         </Routes>
       </div>
     </Router>
