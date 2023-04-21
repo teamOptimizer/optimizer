@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Divider, Input, Dimmer, Loader } from 'semantic-ui-react'
-import { createUser } from '../../firebase/firebase';
+import { createUser, addUserInDatabase } from '../../firebase/firebase';
 import Layout from '../layout/Layout';
 import AuthTheme from './AuthTheme';
 import '../../assets/styles/auth.css';
@@ -14,7 +14,17 @@ const Login = () => {
         e?.preventDefault();
         setIsLoading(true);
         createUser(inputData).then((data) => {
-            // get user details 
+            // get user details
+            console.log(data, 'hello data');
+            const userDetails = {
+                accessToken: data.user.accessToken,
+                email: data.user.email,
+                emailVerified: data.user.emailVerified,
+                userUid: data.user.uid,
+                isVerifiedUser: false,
+                metaData: data.user.metadata
+            }
+            addUserInDatabase(data.user.uid, userDetails);
         }).finally(() => setIsLoading(false));
     }
     return (
