@@ -27,8 +27,8 @@ const Login = () => {
     }
     return (
         <Layout>
-        <AuthTheme imageUrl={'../../assets/images/login.jpg'}>
-            {isLoading ?       <Dimmer active inverted> <Loader size='big' /> </Dimmer> : (
+        <AuthTheme>
+            {isLoading ? <Dimmer active inverted> <Loader size='big' /> </Dimmer> : (
             <div className='opt-signup-inner-container'>
                 <Header>Login In</Header>
                 <div className='opt-auth-input-container'>

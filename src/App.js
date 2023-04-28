@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import {
-  Routes,
-  Route,
-  BrowserRouter as Router,
+    Routes,
+    Route,
+    BrowserRouter as Router,
 } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -16,7 +16,6 @@ import AuthContext, { initialUserDetails } from './components/authContext/AuthCo
 function App() {
   const [userDetails, setUserDetails] = useState(initialUserDetails);
   const userDetailsValue = useMemo(() => ({ userDetails, setUserDetails } ), [userDetails]);
-
   console.log(userDetails, 'hello userDetails');
   return (
     <Router>
