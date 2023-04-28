@@ -34,16 +34,12 @@ export const addUserInDatabase = (userId, data) => {
 
 export const getUserDetails = async (userId) => {
   const userRef = ref(db, 'users/' + userId);
-  await get(userRef, `users/${userId}`).then((snapshot) => {
-    if (snapshot.exists()) {
-      return snapshot.val();
-    } else {
-      console.log("No data available");
-      return {};
-    }
-  }).catch((error) => {
-    console.error(error);
-  });
+  const userDetails = await get(userRef, `users/${userId}`);
+  if (userDetails.exists()) {
+    return userDetails.val();
+  } else {
+    return {};
+  }
   
 }
 
