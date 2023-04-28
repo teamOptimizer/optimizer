@@ -35,3 +35,8 @@
     color: white;
     margin: 1rem 0;
 }
+
+.opt-editprofile-image-container {
+    display: flex;
+    justify-content: center;
+}

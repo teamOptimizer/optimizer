@@ -10,7 +10,7 @@ import 'semantic-ui-css/semantic.min.css';
 import Home from './components/home/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import EditProfile from './components/auth/EditProfile';
+import EditProfile from './components/editProfile/EditProfile';
 import AuthContext, { initialUserDetails } from './components/authContext/AuthContext';
 import Notifications from './components/notifications/Notifications';
 import Event from './components/events/Events';

@@ -21,8 +21,7 @@ const Login = () => {
         handleUserLogin(inputData).then(async (data) => {
             // get user details 
             const userDetails = await getUserDetails(data.user.uid);
-
-            setUserDetails({...userDetails, isLoggedIn: true });
+            setUserDetails({ accessToken: data.user.accessToken, isLoggedIn: true, userDetails });
             navigate('/')
         }).finally(() => setIsLoading(false));
     }

@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, set, get } from 'firebase/database';
+import { getDatabase, ref, set, get, update } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,13 +27,17 @@ export const createUser = (inputData) => {
   return createUserWithEmailAndPassword(auth, inputData.email, inputData.password);
 }
 
+const getUserRef = (userId) => {
+  return ref(db, 'users/' + userId);
+}
+
 export const addUserInDatabase = (userId, data) => {
-  const userRef = ref(db, 'users/' + userId);
+  const userRef = getUserRef(userId)
   set(userRef, data);
 }
 
 export const getUserDetails = async (userId) => {
-  const userRef = ref(db, 'users/' + userId);
+  const userRef = getUserRef(userId)
   const userDetails = await get(userRef, `users/${userId}`);
   if (userDetails.exists()) {
     return userDetails.val();
@@ -55,10 +59,15 @@ export const logout = async () => {
 export const checkIfUserLoggedIn = (setterFunction = () => {}) => {
   onAuthStateChanged(auth, async (user) => {
     if(user) {
-      const userDetails = getUserDetails(user.uid);
+      const userDetails = await getUserDetails(user.uid);
       setterFunction({...userDetails, isLoggedIn: true });
     }
   })
+}
+
+export const updateUserDetails = (userId, userDetails) => {
+  const userRef = getUserRef(userId);
+  return update(userRef, userDetails);
 }
 
 export default firebaseApp;

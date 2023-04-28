@@ -1,0 +1,14 @@
+.opt-edit-profile-component {
+    display: flex;
+    flex-direction: row;
+}
+
+.opt-edit-profile-component .ui.segment {
+    margin-top: 0px;
+    margin-left: 1rem;
+    width: 100%;
+}
+
+.opt-edit-profile-component .ui.steps {
+    min-width: 280px;
+}

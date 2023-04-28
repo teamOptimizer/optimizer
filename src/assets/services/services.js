@@ -40,3 +40,16 @@ export const notifications = [
         action: 'request'
     },
 ]
+
+export const userTypes = [
+    { key: 1, text: 'Donar', value: 'donar' },
+    { key: 2, text: 'Requestor', value: 'requestor' },
+    { key: 3, text: 'both', value: 'both' }
+]
+
+export const categoryOptions = [
+    { key: 1, text: 'Food', value: 'food' },
+    { key: 2, text: 'Clothing', value: 'clothing' },
+    { key: 3, text: 'Academics', value: 'academics' },
+    { key: 4, text: 'Construction Items', value: 'construction' }
+]
