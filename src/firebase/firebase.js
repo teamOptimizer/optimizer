@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { getDatabase, ref, set, get } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -46,6 +46,19 @@ export const getUserDetails = async (userId) => {
 export const handleUserLogin = (inputData) => {
   // auth.setPersistence(auth, auth.Auth.Persistence.LOCAL);
   return signInWithEmailAndPassword(auth, inputData.email, inputData.password)
+}
+
+export const logout = async () => {
+  await signOut(auth);
+}
+
+export const checkIfUserLoggedIn = (setterFunction = () => {}) => {
+  onAuthStateChanged(auth, async (user) => {
+    if(user) {
+      const userDetails = getUserDetails(user.uid);
+      setterFunction({...userDetails, isLoggedIn: true });
+    }
+  })
 }
 
 export default firebaseApp;

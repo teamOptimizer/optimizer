@@ -1,0 +1,41 @@
+.notifi-cards{
+    padding: 10px !important;
+    width: 95% !important;
+    /* margin: auto !important; */
+    background-color: #eaffea !important;
+    box-shadow: none !important;
+    margin-bottom: 10px !important;
+    border-radius: 10px !important;
+}
+.notifi-card-details{
+    display: flex;
+    align-items: center;
+}
+
+.notifi-card-details span{
+    color: #126200;
+}
+
+.notifi-card-details .card-icon-container{
+margin-right: 10px;
+}
+
+.notifi-card-details .icon{
+ margin-bottom: 7px;
+ color: #fff;
+ margin-right: 0px;
+}
+.card-icon-container{
+    min-width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #87ff6c!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notifi-container{
+    background-color: #fff;
+    padding: 20px;
+}

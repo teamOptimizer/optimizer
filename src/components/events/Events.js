@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Input, Dimmer, Loader } from 'semantic-ui-react'
-import { createEvent } from '../../firebase/firebase';
+// import { createEvent } from '../../firebase/firebase';
 import Layout from '../layout/Layout';
 import AuthTheme from '../auth/AuthTheme';
 import '../../assets/styles/auth.css';
@@ -13,9 +13,9 @@ const Events = () => {
     const handleEventCreation = (event) => {
         event?.preventDefault();
         setIsLoading(true);
-        createEvent(eventData).then((data) => {
-            // get user details 
-        }).finally(() => setIsLoading(false));
+        // createEvent(eventData).then((data) => {
+        //     // get user details 
+        // }).finally(() => setIsLoading(false));
     }
     return (
         <Layout>

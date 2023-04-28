@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Sidebar, Segment, Menu } from 'semantic-ui-react';
 import Header from './Header';
-import MobileHeader from './MobileHeader';
 import Footer from './Footer';
 import '../../assets/styles/layout.css';
 

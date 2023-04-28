@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
     Routes,
     Route,
@@ -12,11 +12,18 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import EditProfile from './components/auth/EditProfile';
 import AuthContext, { initialUserDetails } from './components/authContext/AuthContext';
+import Notifications from './components/notifications/Notifications';
+import Event from './components/events/Events';
+import { checkIfUserLoggedIn } from './firebase/firebase';
 
 function App() {
   const [userDetails, setUserDetails] = useState(initialUserDetails);
   const userDetailsValue = useMemo(() => ({ userDetails, setUserDetails } ), [userDetails]);
-  console.log(userDetails, 'hello userDetails');
+
+  useEffect(() => {
+    checkIfUserLoggedIn(setUserDetails);
+    
+  }, [])
   return (
     <Router>
       <AuthContext.Provider value={userDetailsValue}>
@@ -26,6 +33,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path='/signup' element={<Register />} />
             <Route path='/edit-profile' element={<EditProfile />} />
+            <Route path='/notifications' element={<Notifications />} />
+            <Route path='/events' element={<Event />} />
           </Routes>
         </div>
       </AuthContext.Provider>
