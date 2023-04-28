@@ -1,7 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {  createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createEventWithData } from 'firebase/events';
 import { getAuth } from "firebase/auth";
+import { getEvent } from "firebase/events";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,9 +22,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
+export const events = getEvent(firebaseApp);
 
 export const createUser = (inputData) => {
   return createUserWithEmailAndPassword(auth, inputData.email, inputData.password);
+}
+
+export const createEvent = (eventData) => {
+    return createEventWithData(events, eventData.name, eventData.metrics, eventData.location);
 }
 
 export const handleUserLogin = (inputData) => {

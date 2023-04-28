@@ -7,7 +7,7 @@ const AuthTheme = ({ imageUrl, children }) => {
                 <Grid >
                     <Grid.Row>
                         <Grid.Column computer={10} className='opt-login-image-container' tablet={8} only='computer'>
-                            <Image size="big" src={require('../../assets/images/login.jpg')} />
+                        <Image size="big" src={require(imageUrl)} />
                         </Grid.Column>
                         <Grid.Column computer={6} tablet={8} mobile={16}>
                             {children}
