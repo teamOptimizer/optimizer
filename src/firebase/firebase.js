@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import {  createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { getAuth } from "firebase/auth";
-import { getDatabase, ref, set } from 'firebase/database';
+import { getDatabase, ref, set, get, child } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -32,9 +32,24 @@ export const addUserInDatabase = (userId, data) => {
   set(userRef, data);
 }
 
+export const getUserDetails = async (userId) => {
+  const userRef = ref(db, 'users/' + userId);
+  await get(userRef, `users/${userId}`).then((snapshot) => {
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else {
+      console.log("No data available");
+      return {};
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+  
+}
+
 export const handleUserLogin = (inputData) => {
   // auth.setPersistence(auth, auth.Auth.Persistence.LOCAL);
-  return signInWithEmailAndPassword(inputData.email, inputData.password)
+  return signInWithEmailAndPassword(auth, inputData.email, inputData.password)
 }
 
 export default firebaseApp;

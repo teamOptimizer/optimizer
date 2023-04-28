@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
-import { handleUserLogin } from '../../firebase/firebase';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { handleUserLogin, getUserDetails } from '../../firebase/firebase';
 import { Button, Divider, Input, Dimmer, Loader } from 'semantic-ui-react'
-// import { createUser } from '../../firebase/firebase';
+import { Header } from 'semantic-ui-react';
 import Layout from '../layout/Layout';
 import AuthTheme from './AuthTheme';
+import AuthContext from '../authContext/AuthContext';
 import '../../assets/styles/auth.css';
-import { Header } from 'semantic-ui-react';
+
 
 const Login = () => {
     const [inputData, setInputData] = useState({email: '', password: '' });
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+
+    const { setUserDetails } = useContext(AuthContext);
 
     const handleLogin = (e) => {
-        e.preventDefault();
         setIsLoading(true)
-        handleUserLogin(inputData).then((data) => {
+        handleUserLogin(inputData).then(async (data) => {
             // get user details 
+            const userDetails = await getUserDetails(data.user.uid);
+            setUserDetails(userDetails);
+            navigate('/')
         }).finally(() => setIsLoading(false));
     }
     return (
