@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Segment, Step } from 'semantic-ui-react';
 import SelectCategoryStep from './SelectCategoryStep';
 import SelectedCategoryStep from './SelectedCategoryDetails';
+import EventLocation from './EventLocation';
+import AuthContext from '../authContext/AuthContext';
+import { createEvent } from '../../firebase/firebase';
+import { initialAddressData } from '../editProfile/AddressStep';
 import '../../assets/styles/events.css';
 
 const initialFoodDetails = {
     noOfItems: '',
     items: [],
-    quantity: [],
 }
 
 const CreateEventComponent = () => {
@@ -16,6 +20,16 @@ const CreateEventComponent = () => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [foodDetails, setFoodDetails] = useState(initialFoodDetails);
     const [foodQuantity, setFoodQuantity] = useState([]);
+    const [isLoading, setIsLoading] = useState([]);
+    // clothing details
+    const [clothingDetails, setClothingDetails] = useState();
+    const [clothingQuantity, setClothingQuantity] = useState();
+
+    // 
+    const [locationDetails, setLocationDetails] = useState(initialAddressData);
+    const { userDetails } = useContext(AuthContext);
+
+    const navigate = useNavigate();
     const renderStepper = () => {
         return (
             <div className='opt-layout-container'>
@@ -43,6 +57,42 @@ const CreateEventComponent = () => {
         )
     }
 
+    const getData = () => {
+        switch(selectedCategory) {
+            case 'food':
+                return foodDetails;
+            case 'clothing':
+                return clothingDetails;
+            default:
+                return null;
+        }
+    }
+
+    const getQuantity = () => {
+        switch(selectedCategory) {
+            case 'food':
+                return foodQuantity;
+            case 'clothing':
+                return clothingQuantity;
+            default:
+                return null;
+        }
+    }
+
+    const createDonationEvent = () => {
+        const eventDetails = {
+            category: selectedCategory,
+            data: getData(),
+            quantity: getQuantity(),
+            createdBy: userDetails?.userData,
+            createdOn: new Date().toISOString(),
+            location: locationDetails,
+        }
+        createEvent(eventDetails).then((data) => {
+            navigate('/events')
+        }).catch((err) => console.log(err))
+    }
+
     const renderStepperComponents = () => {
         switch(activeStep) {
             case 'category':
@@ -58,6 +108,14 @@ const CreateEventComponent = () => {
                         setActiveStep={(value) => setActiveStep(value)}
                         foodQuantity={foodQuantity}
                         setFoodQuantity={setFoodQuantity}
+                    />
+                )
+            case 'location':
+                return (
+                    <EventLocation
+                        createDonationEvent={createDonationEvent}
+                        addressData={locationDetails}
+                        setAddressData={setLocationDetails}
                     />
                 )
             default:
