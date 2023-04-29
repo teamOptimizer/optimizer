@@ -11,6 +11,7 @@ import Home from './components/home/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import EditProfile from './components/editProfile/EditProfile';
+import CreateEvent from './components/events/CreateEvent';
 import AuthContext, { initialUserDetails } from './components/authContext/AuthContext';
 import Notifications from './components/notifications/Notifications';
 import Event from './components/events/Events';
@@ -35,6 +36,7 @@ function App() {
             <Route path='/edit-profile' element={<EditProfile />} />
             <Route path='/notifications' element={<Notifications />} />
             <Route path='/events' element={<Event />} />
+            <Route path='/create-event' element={<CreateEvent />} />
           </Routes>
         </div>
       </AuthContext.Provider>

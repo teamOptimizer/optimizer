@@ -16,7 +16,6 @@ function Header({ toggleSidebar }) {
             setUserDetails(initialUserDetails);
         });
     }
-    console.log(userDetails, 'hello user details')
     return (
         <div className="opt-header-container">
             <Grid>
