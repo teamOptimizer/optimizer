@@ -25,6 +25,7 @@
 .opt-body-container {
     max-width: var(--maxWidthForBodyContainer);
     margin: auto;
+    width: 100%;
 }
 
 .ui.text.opt-main-header.menu .item {
@@ -62,6 +63,13 @@
     height: 100vh;
 }
 
+.opt-layout-container.ui.segment .pusher{
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
 body {
     overflow-x: hidden;
     background-color: #efefef;
@@ -75,4 +83,11 @@ body {
 .opt-myAccount-dropdown.ui.labeled.icon.button {
     background-color: #bd1717;
     color: white;
+}
+
+.opt-myAccount-dropdown.ui.labeled.icon.button.opt-myAccount-home-dropdown {
+    background-color: transparent;
+    border: 1px solid white;
+    box-shadow: none;
+    margin-left: 10px;
 }

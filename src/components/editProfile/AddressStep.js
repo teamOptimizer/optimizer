@@ -77,7 +77,10 @@ export default function AddressStep({ userDetails, setUserDetailsInContext }) {
                 </Form.Field>
             </Form.Group>
                 <Form.Group>
-                    <Form.Field width={16} >
+                <Form.Field width={8} >
+                        <Button onClick={() => handleSubmitClick()} primary>Back</Button>
+                    </Form.Field>
+                    <Form.Field width={8} >
                         <Button floated="right" onClick={() => handleSubmitClick()} primary>Submit</Button>
                     </Form.Field>
                 </Form.Group>

@@ -6,25 +6,10 @@ import '../../assets/styles/layout.css';
 
 function Layout({ children }) {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-
-  const scroller = useRef();
  
-  useEffect(() => {
-      function updateScrollPosition() {
-          // update the scroll position
-          console.log('e')
-      }
-
-      // if (scroller && scroller.current) {
-      //     scroller.current.addEventListener("scroll", updateScrollPosition, false);
-      //     return function cleanup() {
-      //          scroller.current.removeEventListener("scroll", updateScrollPosition, false);
-      //     };
-      // }
-  }, []);
 
   return (
-    <div ref={scroller}>
+    <div>
     <Sidebar.Pushable as={Segment} className="opt-layout-container">
       <Sidebar
         as={Menu}
@@ -38,7 +23,7 @@ function Layout({ children }) {
       />
       <Sidebar.Pusher>
         <>
-          {/* <Header toggleSidebar={setIsSidebarVisible} /> */}
+          <Header toggleSidebar={setIsSidebarVisible} />
             <div className="opt-body-container">{children}</div>
           <Footer />
         </>

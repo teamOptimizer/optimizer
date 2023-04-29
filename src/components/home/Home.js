@@ -5,7 +5,6 @@ import { createMedia } from '@artsy/fresnel'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { InView } from 'react-intersection-observer'
-
 import {
     Button,
     Container,
@@ -18,7 +17,10 @@ import {
     Menu,
     Segment,
     Sidebar,
-} from 'semantic-ui-react'
+    Dropdown
+} from 'semantic-ui-react';
+import AuthContext, { initialUserDetails } from '../authContext/AuthContext';
+import { logout } from '../../firebase/firebase';
 
 const { MediaContextProvider, Media } = createMedia({
     breakpoints: {
@@ -37,7 +39,7 @@ const HomepageHeading = ({ mobile }) => (
     <Container text>
         <Header
             as='h1'
-            content='Imagine-a-Company'
+            content='Uppakar'
             inverted
             style={{
                 fontSize: mobile ? '2em' : '4em',
@@ -48,7 +50,7 @@ const HomepageHeading = ({ mobile }) => (
         />
         <Header
             as='h2'
-            content='Do whatever you want when you want to.'
+            content='Helping eachother to form a better world'
             inverted
             style={{
                 fontSize: mobile ? '1.5em' : '1.7em',
@@ -73,12 +75,19 @@ HomepageHeading.propTypes = {
  */
 class DesktopContainer extends Component {
     state = {}
+    static contextType = AuthContext;
+    toggleFixedMenu = (inView) => this.setState({ fixed: !inView });
 
-    toggleFixedMenu = (inView) => this.setState({ fixed: !inView })
-
+    signOutUser = async () => {
+        const { setUserDetails } = this.context;
+        logout().then(() => {
+            setUserDetails(initialUserDetails);
+        });
+    }
     render() {
         const { children } = this.props
-        const { fixed } = this.state
+        const { fixed } = this.state;
+        const { userDetails } = this.context;
 
         return (
             <Media greaterThan='mobile'>
@@ -110,12 +119,38 @@ class DesktopContainer extends Component {
                                     <a href="./notifications">Notifications</a>
                                 </Menu.Item>
                                 <Menu.Item position='right'>
-                                    <Button as='a' inverted={!fixed} >
-                                        <a href="./login">Log in</a>
-                                    </Button>
-                                    <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
-                                        <a href="./login">Register</a>
-                                    </Button>
+                                    
+                                    {userDetails?.isLoggedIn ? (
+                                        <>
+                                            <Button href="/create-event" as='a' inverted={!fixed} >
+                                               Create Event 
+                                            </Button>
+                                            <Dropdown
+                                                button 
+                                                className='icon opt-myAccount-dropdown opt-myAccount-home-dropdown'
+                                                icon="user"
+                                                floating
+                                                labeled
+                                                text='My Account'
+                                            >
+                                                <Dropdown.Menu>
+                                                    <Dropdown.Header>Hi {userDetails?.userData?.name}</Dropdown.Header>
+                                                    <Dropdown.Item as="a" href="/edit-profile">Edit Profile</Dropdown.Item>
+                                                    <Dropdown.Item onClick={() => this.signOutUser()}>Logout</Dropdown.Item>
+                                                </Dropdown.Menu>
+                                            </Dropdown>
+                                            </>
+                                    ) :
+                                    (
+                                        <>
+                                            <Button as='a' inverted={!fixed} >
+                                                <a href="./login">Log in</a>
+                                            </Button>
+                                            <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
+                                                <a href="./login">Register</a>
+                                            </Button>
+                                            </>
+                                    )}
                                 </Menu.Item>
                             </Container>
                         </Menu>

@@ -19,7 +19,7 @@ import {
 const Footer = () => {
     // const navigate = useNavigate();
     return (
-        <Segment inverted vertical style={{ padding: '5em 0em' }}>
+        <Segment inverted vertical style={{ padding: '5em 0em', marginTop: '1rem' }}>
         <Container>
           <Grid divided inverted stackable>
             <Grid.Row>
