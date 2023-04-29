@@ -1,19 +1,18 @@
 import React, { useState, useContext } from 'react';
-import { Segment, Step, Header, Grid } from 'semantic-ui-react';
+import { Segment, Step } from 'semantic-ui-react';
 import AuthContext from '../authContext/AuthContext';
 import BasicStep from './BasicStep'
 import AddressStep from './AddressStep';
 
 const EditProfileComponent  = () => {
-    const [activeStep, setActiveStep] = useState('basic');
+    const [activeStep, setActiveStep] = useState('address');
     const { setUserDetails: setUserDetailsInContext, userDetails } = useContext(AuthContext);
-    console.log(userDetails, 'hell user details')
     const renderSteps = () => {
         switch(activeStep) {
             case 'basic':
                 return <BasicStep userData={userDetails?.userData} setActiveStep={() => setActiveStep('address')} />;
             case 'address':
-                return <AddressStep  />
+                return <AddressStep userDetails={userDetails} setUserDetailsInContext={setUserDetailsInContext} />
             default:
                 return null;
         }

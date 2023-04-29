@@ -11,7 +11,6 @@ const initialData = {
 }
 
 const BasicStep = ({ setActiveStep, userData }) => {
-    console.log(userData, 'hello userData')
     const [basicUserData, setBasicUserData] = useState(initialData);
     useEffect(() => {
         setBasicUserData(userData);
