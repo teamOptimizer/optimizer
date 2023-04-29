@@ -11,12 +11,12 @@ import '../../assets/styles/home.css';
 function Header({ toggleSidebar }) {
     const navigate = useNavigate();
     const { userDetails, setUserDetails } = useContext(AuthContext);
+    console.log(userDetails, 'hello')
     const signOutUser = async () => {
         logout().then(() => {
             setUserDetails(initialUserDetails);
         });
     }
-    console.log(userDetails, 'hello user details')
     return (
         <div className="opt-header-container">
             <Grid>

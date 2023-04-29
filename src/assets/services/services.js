@@ -51,5 +51,6 @@ export const categoryOptions = [
     { key: 1, text: 'Food', value: 'food' },
     { key: 2, text: 'Clothing', value: 'clothing' },
     { key: 3, text: 'Academics', value: 'academics' },
-    { key: 4, text: 'Construction Items', value: 'construction' }
+    { key: 4, text: 'Construction Items', value: 'construction' },
+    { key: 5, text: 'Organisation', value: 'organisation' }
 ]
