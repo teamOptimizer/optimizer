@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {  createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { getAuth } from "firebase/auth";
-import { getDatabase, ref, set } from 'firebase/database';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
+import { getDatabase, ref, set, get, update } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,14 +27,47 @@ export const createUser = (inputData) => {
   return createUserWithEmailAndPassword(auth, inputData.email, inputData.password);
 }
 
+const getUserRef = (userId) => {
+  return ref(db, 'users/' + userId);
+}
+
 export const addUserInDatabase = (userId, data) => {
-  const userRef = ref(db, 'users/' + userId);
+  const userRef = getUserRef(userId)
   set(userRef, data);
+}
+
+export const getUserDetails = async (userId) => {
+  const userRef = getUserRef(userId)
+  const userDetails = await get(userRef, `users/${userId}`);
+  if (userDetails.exists()) {
+    return userDetails.val();
+  } else {
+    return {};
+  }
+  
 }
 
 export const handleUserLogin = (inputData) => {
   // auth.setPersistence(auth, auth.Auth.Persistence.LOCAL);
-  return signInWithEmailAndPassword(inputData.email, inputData.password)
+  return signInWithEmailAndPassword(auth, inputData.email, inputData.password)
+}
+
+export const logout = async () => {
+  await signOut(auth);
+}
+
+export const checkIfUserLoggedIn = (setterFunction = () => {}) => {
+  onAuthStateChanged(auth, async (user) => {
+    if(user) {
+      const userDetails = await getUserDetails(user.uid);
+      setterFunction({...userDetails, isLoggedIn: true });
+    }
+  })
+}
+
+export const updateUserDetails = (userId, userDetails) => {
+  const userRef = getUserRef(userId);
+  return update(userRef, userDetails);
 }
 
 export default firebaseApp;

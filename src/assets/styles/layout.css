@@ -31,7 +31,13 @@
     font-size: 14px;
     font-weight: 500;
     padding: 0 1rem;
-    color: #ffa96a;
+    color: #bd1717;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
     cursor: pointer;
 }
 
@@ -59,4 +65,14 @@
 body {
     overflow-x: hidden;
     background-color: #efefef;
+}
+
+.opt-myAccount-dropdown.ui.labeled.icon.button>.icon, .opt-myAccount-dropdown.ui.labeled.icon.buttons>.button>.icon {
+    background-color: inherit;
+    color: white;
+}
+
+.opt-myAccount-dropdown.ui.labeled.icon.button {
+    background-color: #bd1717;
+    color: white;
 }

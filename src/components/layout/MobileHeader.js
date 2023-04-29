@@ -6,7 +6,7 @@ const MobileHeader = ({ toggleSidebar }) => {
         <div className="opt-mobile-header-row">
             <Icon name="sidebar" size="large" link onClick={() => toggleSidebar(true)} className='opt-menu-bar-icon' />
             <Image size="small" src={require('../../assets/images/logo.png')} />
-            <Icon name="bell" />
+            <a href='/notifications'><Icon name="bell" /></a>
         </div>
     )
 }

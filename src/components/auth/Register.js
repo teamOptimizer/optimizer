@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Divider, Input, Dimmer, Loader } from 'semantic-ui-react'
+import { Button, Divider, Input, Dimmer, Loader } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 import { createUser, addUserInDatabase } from '../../firebase/firebase';
 import Layout from '../layout/Layout';
 import AuthTheme from './AuthTheme';
@@ -9,13 +10,12 @@ import { Header } from 'semantic-ui-react';
 const Login = () => {
     const [inputData, setInputData] = useState({email: '', password: '' });
     const [isLoading, setIsLoading] = useState(false);
-
+    const navigate = useNavigate();
     const handleSubmit = (e) => {
         e?.preventDefault();
         setIsLoading(true);
         createUser(inputData).then((data) => {
             // get user details
-            console.log(data, 'hello data');
             const userDetails = {
                 accessToken: data.user.accessToken,
                 email: data.user.email,
@@ -25,6 +25,7 @@ const Login = () => {
                 metaData: data.user.metadata
             }
             addUserInDatabase(data.user.uid, userDetails);
+            navigate('/edit-profile');
         }).finally(() => setIsLoading(false));
     }
     return (
