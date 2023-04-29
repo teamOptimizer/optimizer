@@ -2,7 +2,7 @@ import React, { useEffect, useState, useNavigate }  from "react";
 import { Button, Form, Header } from "semantic-ui-react";
 import { getUserDetails, updateUserDetails } from "../../firebase/firebase";
 
-const initialAddressData = {
+export const initialAddressData = {
     pincode: '',
     houseNo: '',
     landmark: '',
@@ -76,13 +76,11 @@ export default function AddressStep({ userDetails, setUserDetailsInContext }) {
                     <input placeholder='City' value={addressData.city} onChange={(e) => { setIsUserDetailsModified(true); setAddressData({ ...addressData, city: e.target.value })}} />
                 </Form.Field>
             </Form.Group>
-            <Form>
                 <Form.Group>
                     <Form.Field width={16} >
                         <Button floated="right" onClick={() => handleSubmitClick()} primary>Submit</Button>
                     </Form.Field>
                 </Form.Group>
-            </Form>
             </Form>
         </div>
     )

@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Header, Form, Button, Input } from "semantic-ui-react";
 
 const SelectedCategoryStep = ({ selectedCategory, setActiveStep, foodDetails, setFoodDetails, setFoodQuantity, foodQuantity }) => {
-
     const updateQuantityItem = (foodQuantity, i, name, value, setterFunction) => {
-        const quantity = [...foodQuantity]
+        const quantity = [...foodQuantity];
         const selectedQuantityItem = foodQuantity[i];
-        foodQuantity[name] = value;
-        foodQuantity[i] = selectedQuantityItem;
+        selectedQuantityItem[name] = value;
+        quantity[i] = selectedQuantityItem;
         setterFunction(quantity);
     }
 
@@ -24,7 +23,7 @@ const SelectedCategoryStep = ({ selectedCategory, setActiveStep, foodDetails, se
                         <Form.Field>-</Form.Field>
                         <Form.Field>
                             <label>Item Count in Kgs (approx)</label>
-                            <Input type="number" placeholder="Quantity of Item" value={foodQuantity[i]?.quantity} />
+                            <Input type="number" placeholder="Quantity of Item" value={foodQuantity[i]?.quantity} onChange={(e) => updateQuantityItem(foodQuantity, i, 'quantity', e.target.value, setFoodQuantity)} />
                         </Form.Field>
                     </Form.Group>
                 </>
@@ -34,10 +33,9 @@ const SelectedCategoryStep = ({ selectedCategory, setActiveStep, foodDetails, se
     }
 
     const updateQUantityItems = (value) => {
-        const quantity = Array.from(Array(Number(foodDetails?.noOfItems))).map((x, i) => { return { name: '', quantity: '' } });
+        const quantity = Array.from(Array(Number(value))).map((x, i) => { return { name: '', quantity: '' } });
         setFoodQuantity(quantity)
     }
-
 
     const foodForm = () => {
         return (
@@ -52,7 +50,7 @@ const SelectedCategoryStep = ({ selectedCategory, setActiveStep, foodDetails, se
                         <Button onClick={() => setActiveStep('category')}>Back</Button>
                     </Form.Field>
                     <Form.Field width={8}>
-                        <Button primary floated="right" disabled={Number(foodDetails?.noOfItems) < 0} onClick={() => setActiveStep('location')}>Continue</Button>
+                        <Button primary floated="right" disabled={Number(foodDetails?.noOfItems) < 0} onClick={() => {setActiveStep('location');}}>Continue</Button>
                     </Form.Field>
                 </Form.Group>
             </>

@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, set, get, update } from 'firebase/database';
+import { getDatabase, ref, set, get, update, push } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -29,6 +29,10 @@ export const createUser = (inputData) => {
 
 const getUserRef = (userId) => {
   return ref(db, 'users/' + userId);
+}
+
+const getEventRef = () => {
+  return ref(db, 'events');
 }
 
 export const addUserInDatabase = (userId, data) => {
@@ -68,6 +72,21 @@ export const checkIfUserLoggedIn = (setterFunction = () => {}) => {
 export const updateUserDetails = (userId, userDetails) => {
   const userRef = getUserRef(userId);
   return update(userRef, userDetails);
+}
+
+export const createEvent = async (data) => {
+  const eventRef = getEventRef();
+  await push(eventRef, data);
+}
+
+export const getEventDetails = async () => {
+  const eventRef = getEventRef()
+  const eventDetails = await get(eventRef, 'events/');
+  if (eventDetails.exists()) {
+    return eventDetails.val();
+  } else {
+    return {};
+  }
 }
 
 export default firebaseApp;
