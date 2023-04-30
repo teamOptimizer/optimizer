@@ -8,7 +8,7 @@ export default function EventLocation({ addressData, setAddressData, createDonat
 
     return (
         <div>
-            <Header>Address Details</Header>
+            <Header>where to collect the food</Header>
             <Form loading={isLoading}>
             <Form.Group widths={"equal"}>
                 <Form.Field required>

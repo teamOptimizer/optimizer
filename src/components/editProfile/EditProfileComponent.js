@@ -5,7 +5,7 @@ import BasicStep from './BasicStep'
 import AddressStep from './AddressStep';
 
 const EditProfileComponent  = () => {
-    const [activeStep, setActiveStep] = useState('address');
+    const [activeStep, setActiveStep] = useState('basic');
     const { setUserDetails: setUserDetailsInContext, userDetails } = useContext(AuthContext);
     const renderSteps = () => {
         switch(activeStep) {

@@ -60,6 +60,7 @@ function Header({ toggleSidebar }) {
                                                     <Dropdown.Header>Hi {userDetails?.userData?.name}</Dropdown.Header>
                                                     <Dropdown.Item as="a" href="/edit-profile">Edit Profile</Dropdown.Item>
                                                     <Dropdown.Item onClick={() => signOutUser()}>Logout</Dropdown.Item>
+                                                    <Dropdown.Item as="a" href="/requests">Requests</Dropdown.Item>
                                                 </Dropdown.Menu>
                                                 </Dropdown>
                                         </Menu.Item>

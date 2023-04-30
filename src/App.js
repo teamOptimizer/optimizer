@@ -15,20 +15,29 @@ import CreateEvent from './components/events/CreateEvent';
 import AuthContext, { initialUserDetails } from './components/authContext/AuthContext';
 import Notifications from './components/notifications/Notifications';
 import Event from './components/events/Events';
+import Requests from './components/requests/Requests';
 import { checkIfUserLoggedIn } from './firebase/firebase';
+import { Loader } from 'semantic-ui-react';
 
 function App() {
   const [userDetails, setUserDetails] = useState(initialUserDetails);
+  const [isLoading, setIsLoading] = useState(false);
   const userDetailsValue = useMemo(() => ({ userDetails, setUserDetails } ), [userDetails]);
 
   useEffect(() => {
-    checkIfUserLoggedIn(setUserDetails);
-    
+    setIsLoading(true);
+    checkIfUserLoggedIn((data) => { setUserDetails(data); setIsLoading(false) });
   }, [])
+
   return (
     <Router>
       <AuthContext.Provider value={userDetailsValue}>
         <div className="App">
+          {isLoading ? (
+            <div>
+              <Loader active />
+            </div>
+          ) : (
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -37,7 +46,9 @@ function App() {
             <Route path='/notifications' element={<Notifications />} />
             <Route path='/events' element={<Event />} />
             <Route path='/create-event' element={<CreateEvent />} />
+            <Route path='/requests' element={<Requests />} />
           </Routes>
+          )}
         </div>
       </AuthContext.Provider>
     </Router>

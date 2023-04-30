@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Sidebar, Segment, Menu } from 'semantic-ui-react';
 import Header from './Header';
 import Footer from './Footer';

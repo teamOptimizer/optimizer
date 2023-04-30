@@ -1,3 +1,26 @@
 .opt-items-group {
     align-items: center;
 }
+
+.opt-events-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.opt-event-content-container {
+    margin-left: 15px;
+}
+
+.opt-event-content-container .ui.header {
+    margin-bottom: 0px;
+}
+
+.opt-event-content-container > p {
+    color: grey;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.opt-location-text {
+    font-size: 12px;
+}

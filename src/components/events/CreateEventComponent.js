@@ -84,7 +84,7 @@ const CreateEventComponent = () => {
             category: selectedCategory,
             data: getData(),
             quantity: getQuantity(),
-            createdBy: userDetails?.userData,
+            createdBy: { userData:  userDetails?.userData, userUid: userDetails.userUid },
             createdOn: new Date().toISOString(),
             location: locationDetails,
         }

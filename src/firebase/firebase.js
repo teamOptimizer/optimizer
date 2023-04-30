@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, set, get, update, push } from 'firebase/database';
+import { getDatabase, ref, set, get, update, push, orderByChild, child, query, equalTo } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -35,6 +35,10 @@ const getEventRef = () => {
   return ref(db, 'events');
 }
 
+const getRequestRef = () => {
+  return ref(db, 'requests');
+}
+
 export const addUserInDatabase = (userId, data) => {
   const userRef = getUserRef(userId)
   set(userRef, data);
@@ -61,6 +65,7 @@ export const logout = async () => {
 }
 
 export const checkIfUserLoggedIn = (setterFunction = () => {}) => {
+  console.log(setterFunction)
   onAuthStateChanged(auth, async (user) => {
     if(user) {
       const userDetails = await getUserDetails(user.uid);
@@ -87,6 +92,25 @@ export const getEventDetails = async () => {
   } else {
     return {};
   }
+}
+
+export const requestForItem = (requestItem) => {
+  const requestRef = getRequestRef();
+  return push(requestRef, requestItem);
+}
+
+export const getRequestSents = async (userUid) => {
+  const requestRef = getRequestRef();
+  const querys = [orderByChild('requestedBy/userUid'), equalTo(userUid)]
+  const requestSentSnapShot = await get(query(requestRef, ...querys));
+  return requestSentSnapShot.val();
+}
+
+export const getRequestsReceived = async (userUid) => {
+  const requestRef = getRequestRef();
+  const querys = [orderByChild('requestedTo/userUid'), equalTo(userUid)]
+  const requestReceivedSnapShot = await get(query(requestRef, ...querys));
+  return requestReceivedSnapShot.val();
 }
 
 export default firebaseApp;

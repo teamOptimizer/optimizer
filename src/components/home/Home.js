@@ -136,6 +136,7 @@ class DesktopContainer extends Component {
                                                 <Dropdown.Menu>
                                                     <Dropdown.Header>Hi {userDetails?.userData?.name}</Dropdown.Header>
                                                     <Dropdown.Item as="a" href="/edit-profile">Edit Profile</Dropdown.Item>
+                                                    <Dropdown.Item as="a" href="/requests">Requests</Dropdown.Item>
                                                     <Dropdown.Item onClick={() => this.signOutUser()}>Logout</Dropdown.Item>
                                                 </Dropdown.Menu>
                                             </Dropdown>

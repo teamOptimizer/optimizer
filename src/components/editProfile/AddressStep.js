@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useNavigate }  from "react";
+import React, { useEffect, useState }  from "react";
+import { useNavigate } from 'react-router-dom';
 import { Button, Form, Header } from "semantic-ui-react";
 import { getUserDetails, updateUserDetails } from "../../firebase/firebase";
 
@@ -17,10 +18,9 @@ export default function AddressStep({ userDetails, setUserDetailsInContext }) {
     const [addressData, setAddressData ] = useState(initialAddressData);
     const [isLoading, setIsLoading] = useState(false);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-    const [isUserDetailsModified, setIsUserDetailsModified] = useState(false);
 
     useEffect(() => {
-        setAddressData(userDetails?.userData?.location);
+        if(userDetails?.userData?.location) setAddressData(userDetails?.userData?.location);
     }, []);
 
     const handleSubmitClick = () => {
@@ -49,31 +49,31 @@ export default function AddressStep({ userDetails, setUserDetailsInContext }) {
             <Form.Group widths={"equal"}>
                 <Form.Field required>
                     <label>House Number/Flat Number:</label>
-                    <input placeholder='House Number' value={addressData.houseNo} onChange={(e) => { setIsUserDetailsModified(true); setAddressData({ ...addressData, houseNo: e.target.value })}} />
+                    <input placeholder='House Number' value={addressData.houseNo} onChange={(e) => { setAddressData({ ...addressData, houseNo: e.target.value })}} />
                 </Form.Field>
                 <Form.Field required>
                     <label>Area</label>
-                    <input placeholder='Landmark' value={addressData.landmark} onChange={(e) => { setIsUserDetailsModified(true); setAddressData({ ...addressData, landmark: e.target.value })} } />
+                    <input placeholder='Landmark' value={addressData.landmark} onChange={(e) => { setAddressData({ ...addressData, landmark: e.target.value })} } />
                 </Form.Field>
             </Form.Group>
             <Form.Group widths={"equal"}>
                 <Form.Field required>
                     <label>Full Address</label>
-                    <input placeholder='Full address' value={addressData.address} onChange={(e) => { setIsUserDetailsModified(true); setAddressData({ ...addressData, address: e.target.value })}} />
+                    <input placeholder='Full address' value={addressData.address} onChange={(e) => { setAddressData({ ...addressData, address: e.target.value })}} />
                 </Form.Field>
                 <Form.Field required>
                     <label>Pincode</label>
-                    <input placeholder='Pincode' value={addressData.pincode} onChange={(e) => { setIsUserDetailsModified(true); setAddressData({ ...addressData, pincode: e.target.value })}} />
+                    <input placeholder='Pincode' value={addressData.pincode} onChange={(e) => { setAddressData({ ...addressData, pincode: e.target.value })}} />
                 </Form.Field>
             </Form.Group>
             <Form.Group widths={"equal"}>
             <Form.Field required>
                     <label>State</label>
-                    <input placeholder='State' value={addressData.state} onChange={(e) => { setIsUserDetailsModified(true); setAddressData({ ...addressData, state: e.target.value })}} />
+                    <input placeholder='State' value={addressData.state} onChange={(e) => { setAddressData({ ...addressData, state: e.target.value })}} />
                 </Form.Field>
                 <Form.Field required>
                     <label>City</label>
-                    <input placeholder='City' value={addressData.city} onChange={(e) => { setIsUserDetailsModified(true); setAddressData({ ...addressData, city: e.target.value })}} />
+                    <input placeholder='City' value={addressData.city} onChange={(e) => { setAddressData({ ...addressData, city: e.target.value })}} />
                 </Form.Field>
             </Form.Group>
                 <Form.Group>

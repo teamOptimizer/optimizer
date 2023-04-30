@@ -1,4 +1,4 @@
-import { Card, Header, Icon } from "semantic-ui-react";
+import { Card, Header } from "semantic-ui-react";
 import Layout from "../layout/Layout";
 import "../../assets/styles/notification.css"
 

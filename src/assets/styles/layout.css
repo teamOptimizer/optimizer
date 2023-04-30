@@ -26,6 +26,7 @@
     max-width: var(--maxWidthForBodyContainer);
     margin: auto;
     width: 100%;
+    min-height: 40vh;
 }
 
 .ui.text.opt-main-header.menu .item {
@@ -61,13 +62,6 @@
 .opt-layout-container.ui.segment{
     background-color: inherit;
     height: 100vh;
-}
-
-.opt-layout-container.ui.segment .pusher{
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
-    flex-direction: column;
 }
 
 body {
