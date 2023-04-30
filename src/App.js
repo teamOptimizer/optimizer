@@ -25,7 +25,7 @@ function App() {
   const userDetailsValue = useMemo(() => ({ userDetails, setUserDetails } ), [userDetails]);
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
     checkIfUserLoggedIn((data) => { setUserDetails(data); setIsLoading(false) });
   }, [])
 
